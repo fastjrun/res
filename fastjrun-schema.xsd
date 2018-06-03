@@ -5,8 +5,8 @@
 			<xs:sequence>
 				<xs:element ref="packets" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="apiControllers" minOccurs="0" maxOccurs="1"/>
-				<xs:element name="appControllers" minOccurs="0" maxOccurs="1"/>
-				<xs:element name="genericControllers" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="appControllers" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="genericControllers" minOccurs="0" maxOccurs="1"/>
 			</xs:sequence>
 			<xs:attribute name="name" type="xs:string" default="快嘉接口定义规范"/>
 		</xs:complexType>
@@ -62,9 +62,9 @@
 	<xs:element name="list">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="field" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="list" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="object" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="field" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="list" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="object" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 			<xs:attribute name="name" type="xs:string" use="required"/>
 			<xs:attribute name="class" type="xs:string" use="required"/>
@@ -73,9 +73,9 @@
 	<xs:element name="object">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="field" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="list" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="object" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="field" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="list" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="object" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 			<xs:attribute name="name" type="xs:string" use="required"/>
 			<xs:attribute name="class" type="xs:string" use="required"/>
@@ -182,38 +182,6 @@
 			<xs:attribute name="tags" type="xs:string" use="required"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="service">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="method" minOccurs="1" maxOccurs="unbounded"/>
-			</xs:sequence>
-			<xs:attribute name="name" type="xs:string" use="required"/>
-			<xs:attribute name="class" type="xs:string" use="required"/>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="method">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="request" minOccurs="0" maxOccurs="1"/>
-				<xs:element ref="response" minOccurs="0" maxOccurs="1"/>
-			</xs:sequence>
-			<xs:attribute name="name" type="xs:string" use="required"/>
-			<xs:attribute name="version" type="xs:string" use="required"/>
-			<xs:attribute name="path" type="xs:string" use="required"/>
-			<xs:attribute name="remark" type="xs:string" use="required"/>
-			<xs:attribute name="method">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="GET"/>
-						<xs:enumeration value="POST"/>
-						<xs:enumeration value="PUT"/>
-						<xs:enumeration value="DELETE"/>
-						<xs:enumeration value="PATCH"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:attribute>
-		</xs:complexType>
-	</xs:element>
 	<xs:element name="parameters">
 		<xs:complexType>
 			<xs:sequence>
@@ -304,6 +272,38 @@
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="service">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="method" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="class" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="method">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="request" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="response" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="version" type="xs:string" use="required"/>
+			<xs:attribute name="path" type="xs:string" use="required"/>
+			<xs:attribute name="remark" type="xs:string" use="required"/>
+			<xs:attribute name="method">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="GET"/>
+						<xs:enumeration value="POST"/>
+						<xs:enumeration value="PUT"/>
+						<xs:enumeration value="DELETE"/>
+						<xs:enumeration value="PATCH"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="request">
